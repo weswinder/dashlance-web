@@ -1,0 +1,125 @@
+<div class="wrapper wrapper-content" style="padding-top:0px">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="text-center m-t-lg">
+                <!--
+                <h1>
+                    Tasks for <span editable-select="tasks.currentProject" e-ng-options="p.id as p.get('title') for p in projectList" onaftersave="tasks.fetchTasks()"> {{tasks.showProject()}}</span>
+                </h1>
+            -->
+            </div>
+            <ul class="list-inline" ng-show="projectList.length > 0">
+                <li><i class="fa fa-circle text-warning"></i> Features ({{(tasksCtrl.todoList|filter:{"type":0}).length + (tasksCtrl.inProgressList|filter:{"type":0}).length +(tasksCtrl.completedList|filter:{"type":0}).length || 0}})</li>
+                <li><i class="fa fa-circle text-danger"></i> Bugs ({{(tasksCtrl.todoList|filter:{"type":1}).length + (tasksCtrl.inProgressList|filter:{"type":1}).length +(tasksCtrl.completedList|filter:{"type":1}).length || 0}})</li>
+                <li><i class="fa fa-circle text-info"></i> Chores ({{(tasksCtrl.todoList|filter:{"type":2}).length + (tasksCtrl.inProgressList|filter:{"type":2}).length +(tasksCtrl.completedList|filter:{"type":2}).length || 0}})</li>
+                <li>
+                    <select class="input form-control" ng-model="tasksCtrl.currentProject" ng-change="tasksCtrl.fetchTasks()">
+                        <option ng-selected="{{project.id == tasksCtrl.currentProject}}" ng-repeat="project in projectList" value="{{project.id}}">{{project.title}}</option>
+                    </select>
+                </li>
+            </ul>
+            <div class="alert alert-warning col-lg-6 col-lg-offset-3" ng-hide="projectList.length > 0">
+                <center>You must create a project before you can add tasks</center>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="projectList.length > 0">
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3>To-do ({{tasksCtrl.todoList.length || 0}})</h3>
+                    <p class="small"><i class="fa fa-hand-o-up"></i> Drag task between list</p>
+
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button type="button" class="btn btn-sm btn-primary" ng-click="tasksCtrl.newTask()"> <i class="fa fa-plus"></i> New task</button>
+                        </span>
+                    </div>
+                    <div style="background-color:#EEEEEE;padding: 0px 10px 0px 10px;border-radius:5px;margin-top:10px;height:461px;overflow:auto">
+                        <ul style="{{ (tasksCtrl.todoList.length < 4) ? 'height:100%' : '' }}" ui-sortable="sortableOptions" class="sortable-list connectList agile-list" id="0" ng-model="tasksCtrl.todoList">
+                            <li class="{{task.statusClass}}-element" ng-repeat="task in tasksCtrl.todoList">
+                                <div style="margin-bottom:10px" ng-click="tasksCtrl.editTask(task, tasksCtrl.todoList)">{{task.title}}</div>
+                                
+                                <div class="agile-detail">
+                                    <button class="btn btn-white btn-xs" ng-show="task.milestone">{{task.milestone}}</button>
+                                    
+                                    <div class="pull-right" ng-show="task.milestone">
+                                        <button class="btn btn-default btn-xs" ng-click="tasksCtrl.editTask(task, tasksCtrl.todoList)"><i class="fa fa-pencil fa-lg"></i></button>
+                                        <button class="btn btn-danger btn-xs" ng-click="tasksCtrl.deleteTask(task, tasksCtrl.todoList)"><i class="fa fa-trash-o fa-lg"></i></button>
+                                    </div>
+                                    
+                                    <div class="clearfix" ng-hide="task.milestone">
+                                        <button class="btn btn-danger btn-xs pull-right" ng-click="tasksCtrl.deleteTask(task, tasksCtrl.todoList)"><i class="fa fa-trash-o fa-lg"></i></button>
+                                        <button style="margin-right:3px" class="btn btn-default btn-xs pull-right" ng-click="tasksCtrl.editTask(task, tasksCtrl.todoList)"><i class="fa fa-pencil fa-lg"></i></button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="alert alert-info" ng-show="tasksCtrl.tasks.length <= 0">
+                    <center>Shouldn't you start adding some tasks?</center>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3>In Progress ({{tasksCtrl.inProgressList.length || 0}})</h3>
+                    <p class="small"><i class="fa fa-hand-o-up"></i> Drag task between list</p>
+                    <div style="background-color:#EEEEEE;padding: 0px 10px 0px 10px; border-radius:5px;margin-top:10px;height:500px;overflow:auto">
+                        <ul style="{{ (tasksCtrl.inProgressList.length < 4) ? 'height:100%' : '' }}" ui-sortable="sortableOptions" class="sortable-list connectList agile-list" id="1" ng-model="tasksCtrl.inProgressList">
+                            <li class="{{task.statusClass}}-element" ng-repeat="task in tasksCtrl.inProgressList">
+                                <div style="margin-bottom:10px" ng-click="tasksCtrl.editTask(task, tasksCtrl.inProgressList)">{{task.title}}</div>
+                                
+                                <div class="agile-detail">
+                                    <button class="btn btn-white btn-xs" ng-show="task.milestone">{{task.milestone}}</button>
+                                    
+                                    <div class="pull-right" ng-show="task.milestone">
+                                        <button class="btn btn-default btn-xs" ng-click="tasksCtrl.editTask(task, tasksCtrl.inProgressList)"><i class="fa fa-pencil fa-lg"></i></button>
+                                        <button class="btn btn-danger btn-xs" ng-click="tasksCtrl.deleteTask(task, tasksCtrl.inProgressList)"><i class="fa fa-trash-o fa-lg"></i></button>
+                                    </div>
+                                    
+                                    <div class="clearfix" ng-hide="task.milestone">
+                                        <button class="btn btn-danger btn-xs pull-right" ng-click="tasksCtrl.deleteTask(task, tasksCtrl.inProgressList)"><i class="fa fa-trash-o fa-lg"></i></button>
+                                        <button style="margin-right:3px" class="btn btn-default btn-xs pull-right" ng-click="tasksCtrl.editTask(task, tasksCtrl.inProgressList)"><i class="fa fa-pencil fa-lg"></i></button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="ibox">
+                <div class="ibox-content">
+                    <h3>Completed ({{tasksCtrl.completedList.length || 0}})</h3>
+                    <p class="small"><i class="fa fa-hand-o-up"></i> Drag task between list</p>
+                    <div style="background-color:#EEEEEE;padding: 0px 10px 0px 10px; border-radius:5px;margin-top:10px;height:500px;overflow:auto">
+                        <ul style="{{ (tasksCtrl.completedList.length < 4) ? 'height:100%' : '' }}" ui-sortable="sortableOptions" class="sortable-list connectList agile-list" id="2" ng-model="tasksCtrl.completedList">
+                            <li class="{{task.statusClass}}-element" ng-repeat="task in tasksCtrl.completedList">
+                                <div style="margin-bottom:10px" ng-click="tasksCtrl.editTask(task, tasksCtrl.completedList)">{{task.title}}</div>
+                                
+                                <div class="agile-detail">
+                                    <button class="btn btn-white btn-xs" ng-show="task.milestone">{{task.milestone}}</button>
+                                    
+                                    <div class="pull-right" ng-show="task.milestone">
+                                        <button class="btn btn-default btn-xs" ng-click="tasksCtrl.editTask(task, tasksCtrl.completedList)"><i class="fa fa-pencil fa-lg"></i></button>
+                                        <button class="btn btn-danger btn-xs" ng-click="tasksCtrl.deleteTask(task, tasksCtrl.completedList)"><i class="fa fa-trash-o fa-lg"></i></button>
+                                    </div>
+                                    
+                                    <div class="clearfix" ng-hide="task.milestone">
+                                        <button class="btn btn-danger btn-xs pull-right" ng-click="tasksCtrl.deleteTask(task, tasksCtrl.completedList)"><i class="fa fa-trash-o fa-lg"></i></button>
+                                        <button style="margin-right:3px" class="btn btn-default btn-xs pull-right" ng-click="tasksCtrl.editTask(task, tasksCtrl.completedList)"><i class="fa fa-pencil fa-lg"></i></button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

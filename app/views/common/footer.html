@@ -1,0 +1,35 @@
+<div class="footer fixed" ng-controller="ActiveTimersController">
+	<div class="navbar-header" style="margin:">
+		<div style="font-size:22px;"><center><b>Timer</b></center></div>
+	</div>
+    	<ul class="nav navbar-top-links text-center hidden-xs hidden-sm" ng-show="loaded && projectsConverted.length > 0">
+            <li>
+                <input class="form-control input-lg" type="text" placeholder="Type your note..." style="height:100%;width:100%;margin:0;" ng-model="activeTimer.notes" ng-change="activeTimer.$save(activeTimer)">
+            </li>
+            <li style="width:140px">
+                <select class="form-control" placeholder="Select project" ng-model="activeTimer.activeProjectId" ng-change="activeTimer.$save(activeTimer)" ng-class="{ disabled: activeTimer.active }" ng-disabled="activeTimer.active">
+                    <option value="" disabled selected>Projects:</option>
+                    <option ng-selected="{{project.id == activeTimer.activeProjectId}}" ng-repeat="project in projectsConverted" value="{{project.id}}">{{project.title}}</option>
+                </select>
+            </li>
+            <li style="width:170px">
+                <select class="form-control" ng-model="activeTimer.activeTaskId" ng-change="activeTimer.$save(activeTimer)" ng-class="{ disabled: activeTimer.active }" ng-disabled="activeTimer.active">
+                    <option value="" disabled selected>Tasks:</option>
+                    <option ng-selected="{{task.id == activeTimer.activeTaskId}}" ng-repeat="task in tasksConverted" value="{{task.id}}">{{task.title | characters:50 :true}}</option>
+                </select>
+            </li>
+            <li style="width:85px">
+                <input disabled class="form-control input-lg" id="timerDisplay" placeholder="{{counter}}" style="height:100%;width:100%;margin:0;">
+            </li>
+            <li>
+                <button class="btn btn-block btn-success" style="height:100%;width:100px;position:relative;margin:0" ng-click="startTracker()" ng-if="!activeTimer.active" ><i class="fa fa-play"></i> Start</button>
+                <button class="btn btn-block btn-danger" style="height:100%;width:100px;position:relative;margin:0" ng-click="stopTracker()" ng-if="activeTimer.active"><i class="fa fa-stop"></i> Stop</button>
+            </li>
+        </ul>
+        <div class="alert alert-warning col-lg-6 col-lg-offset-3" ng-hide="loaded && projectsConverted.length > 0">
+            <center>You must create a project before you can start tracking time</center>
+        </div>
+        <div class="col-lg-4 col-lg-offset-4">
+            <button class="btn btn-primary btn-block visible-xs visible-sm">Open timer</button>
+        </div>
+</div>

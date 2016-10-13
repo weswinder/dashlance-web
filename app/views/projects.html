@@ -1,0 +1,102 @@
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-8">
+
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h5>All projects for this account</h5>
+
+                    <div class="ibox-tools">
+                        <a class="btn btn-primary" ng-click="projectsCtrl.newProject()"><i class="fa fa-plus"></i> New project</a>
+                    </div>
+                </div>
+                <div class="ibox-content">
+
+                    <div class="project-list">
+
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Status</th>
+                                    <th>Title</th>
+                                    <th>Progress</th>
+                                    <th>Client</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="project in projectsCtrl.projects | orderBy: '-createdAt'">
+                                    <td>
+                                        <div class="btn-group">
+                                        <button type="button" class="btn btn-{{project.status == 1 || project.status == '2' && 'success' || project.status == '1' && 'default' || project.status == '0' && 'primary'}} btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="width:90px">
+                                            {{project.status == '2' && 'Complete' || project.status == '1' && 'Inactive' || project.status == '0' && 'Active'}}&nbsp;&nbsp;<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="" ng-click="project.status='0';projectsCtrl.updateProject(project)">Active</a></li>
+                                            <li><a href="" ng-click="project.status='1';projectsCtrl.updateProject(project)">Inactive</a></li>
+                                            <li><a href="" ng-click="project.status='2';projectsCtrl.updateProject(project)">Complete</a></li>
+                                        </ul>
+                                    </div>
+                                    </td>
+                                    <td class="project-title">
+                                        <a ng-click="projectsCtrl.activeProject(project)">{{project.title}}</a>
+                                        <br/>
+                                        <!--<small>Created 27.04.2016</small>-->
+                                    </td>
+                                    <td class="project-completion">
+                                        <small>{{(project.completion || 0)*100 | number:0}}% Complete</small>
+                                        <div class="progress progress-mini">
+                                            <div ng-style="{ 'width': (project.completion || 0)*100 + '%' }" class="progress-bar"></div>
+                                        </div>
+                                    </td>
+                                    <td class="project-title">
+                                        <a ui-sref="app.clients" ng-init="projectsCtrl.getClient(project)">{{project.client.fullName || project.client.companyName}}</a>
+                                    </td>
+                                    <td>
+                                        <a class="btn btn-white btn-sm" ng-click="projectsCtrl.activeProject(project)"><i class="fa fa-list"></i> Details </a><br />
+                                        <a class="btn btn-white btn-sm" ng-click="projectsCtrl.editProject(project)"><i class="fa fa-pencil fa-lg"></i></a>
+                                        <a class="btn btn-danger btn-sm" ng-click="projectsCtrl.deleteProject(project)"><i class="fa fa-trash fa-lg"></i></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-4">
+            <div class="ibox">
+                <div class="ibox-title">
+                    <h3>Project Details</h3>
+                </div>
+
+                <div class="ibox-content">
+                    <div class="tab-content">
+                        <div class="tab-pane active">
+                            <div class="row m-b-lg">
+                                <div class="col-lg-12 text-center" ng-show="activeProject">
+                                    <h2>{{activeProject.title}}</h2>
+                                    <strong>Client Name:</strong>
+                                    <p>{{activeProject.client.fullName || activeProject.client.companyName}}</p>
+
+                                    <strong>Status:</strong>
+                                    <p><span class="label label-{{activeProject.status == 1 || activeProject.status == '2' && 'success' || activeProject.status == '1' && 'default' || activeProject.status == '0' && 'primary'}}">{{activeProject.status == '2' && 'Complete' || activeProject.status == '1' && 'Inactive' || activeProject.status == '0' && 'Active'}}</span></p>
+
+                                    <div class="col-lg-4 col-lg-offset-4">
+                                        <strong>Progress:</strong>
+                                        <p>
+                                            <small>{{(activeProject.completion || 0)*100 | number:0}}% Complete</small>
+                                            <div class="progress progress-mini">
+                                                <div ng-style="{ 'width': (activeProject.completion || 0)*100 + '%' }" class="progress-bar"></div>
+                                            </div>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,75 @@
+<div class="wrapper wrapper-content" style="padding-top:0px">
+    <div class="text-center m-t-lg"></div>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="alert alert-warning col-lg-6 col-lg-offset-3" ng-hide="invoicesCtrl.isChrome">
+                <center>Please use <a href="http://www.google.com/chrome/browser" target="_blank">Google Chrome</a> for proper download/print functionality.</center>
+            </div>
+            <div class="ibox float-e-margins">
+                <div class="ibox-title">
+                    <h5>All invoices for this account</h5>
+
+                    <div class="ibox-tools">
+                        <a class="btn btn-primary" ng-click="invoicesCtrl.newInvoice()"><i class="fa fa-plus"></i> New Invoice</a>
+                    </div>
+                </div>
+                <div class="ibox-content project-list">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Status</th>
+                                <th>Payment Due</th>
+                                <th>Invoice Date</th>
+                                <th>Number</th>
+                                <th>Client</th>
+                                <th>Amount</th>
+                                <th>Balance</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="invoice in invoicesCtrl.invoices | orderBy: '-createdAt'">
+                                <td>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-{{invoice.status=='Draft' && 'disabled' || invoice.status=='Sent' && 'primary' || invoice.status=='Overdue' && 'danger' || invoice.status=='Paid' && 'success'}} btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            {{invoice.status}}&nbsp;&nbsp;<span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a href="" ng-click="invoice.status='Draft';invoicesCtrl.invoices.$save(invoice)">Draft</a></li>
+                                            <li><a href="" ng-click="invoice.status='Sent';invoicesCtrl.invoices.$save(invoice)">Sent</a></li>
+                                            <li><a href="" ng-click="invoice.status='Overdue';invoicesCtrl.invoices.$save(invoice)">Overdue</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="" ng-click="invoice.status='Paid';invoicesCtrl.invoices.$save(invoice)">Paid</a></li>
+                                        </ul>
+                                    </div>
+                                </td>
+                                <td>{{invoice.dueDate}}</td>
+                                <td>{{invoice.invoiceDate}}</td>
+                                <td>{{("0000" + invoice.number).substr(-4,4)}}</td>
+                                <td>{{invoice.client.companyName}}</td>
+                                <td>{{invoice.currency=='EUR' && '&euro;' || invoice.currency=='GBP' && '&pound;' || '$'}}{{invoice.total | number:2}}</td>
+                                <td>{{invoice.currency=='EUR' && '&euro;' || invoice.currency=='GBP' && '&pound;' || '$'}}{{invoice.total - invoice.payment | number:2}}</td>
+                                <td>
+                                    <a class="btn btn-white btn-sm" ui-sref="app.invoices.edit({invoiceId: invoice.$id})"><i class="fa fa-pencil"></i> Edit </a>
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            More <span class="caret"></span>
+                                        </button>
+                                        <ul class="dropdown-menu">
+                                            <li><a ui-sref="invoicePreview({invoiceId: invoice.$id})"><i class="fa fa-file"></i> Preview</a></li>
+                                            <li role="separator" class="divider"></li>
+                                            <li><a href="" ng-click="invoicesCtrl.downloadInvoice(invoice)"><i class="fa fa-download"></i> Download</a></li>
+                                            <li><a href="" ng-click="invoicesCtrl.printInvoice(invoice)" ng-class="invoicesCtrl.isChrome ? '' : 'btn disabled'"><i class="fa fa-print"></i> Print</a></li>
+                                        </ul>
+                                    </div>
+                                    <a class="btn btn-danger btn-sm" ng-click="invoicesCtrl.deleteInvoice(invoice)"><i class="fa fa-trash fa-lg"></i></a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

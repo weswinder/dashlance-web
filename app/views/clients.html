@@ -1,0 +1,225 @@
+<div class="wrapper wrapper-content">
+    <div class="row">
+        <div class="col-sm-8">
+            <div class="ibox">
+                <div class="ibox-title"> 
+                    <h5>All clients assigned to this account</h5>
+
+                    <div class="ibox-tools">
+                        <a class="btn btn-primary" ng-click="clientsCtrl.newClient()"><i class="fa fa-plus"></i> New client</a>
+                    </div>
+                </div>
+            <div class="ibox-content">
+                    <div class="project-list">
+                        <div class="tab-content">
+                            <div class="tab-pane active">
+                                <div class="full-height-scroll" full-scroll>
+                                    <div class="table-responsive">
+                                        <table class="table table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th>Company Name</th>
+                                                    <th>Full Name</th>
+                                                    <th>Phone #</th>
+                                                    <th>Email Address</th>
+                                                    <th>Actions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr ng-repeat="client in clientsCtrl.clients | orderBy: 'companyName'">
+                                                <td class="project-title"><a ng-click="clientsCtrl.activeClient(client)" class="client-link">{{client.companyName}}</a></td>
+                                                <td> {{client.fullName}}</td>
+                                                <td> {{client.phoneNumber}}</td>
+                                                <td> {{client.emailAddress}}</td>
+                                                <td class="client-status">
+                                                    <a class="btn btn-white btn-sm" ng-click="clientsCtrl.activeClient(client)"><i class="fa fa-list"></i> Details </a>
+                                                    <a class="btn btn-white btn-sm" ng-click="clientsCtrl.editClient(client)"><i class="fa fa-pencil fa-lg"></i></a>
+                                                    <a class="btn btn-danger btn-sm" ng-click="clientsCtrl.deleteClient(client)">
+                                                        <i class="fa fa-trash fa-lg"></i>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4">
+            <div class="ibox">
+                <div class="ibox-title"> 
+                    <h3>Client Details</h3>
+                </div>
+
+                <div class="ibox-content">
+                    <div class="tab-content">
+                        <div class="tab-pane active">
+                            <div class="row m-b-lg">
+                                <div class="col-lg-12 text-center" ng-show="activeClient">
+                                    <h2>{{activeClient.fullName}}</h2>
+                                    <strong>Company Name:</strong>
+                                    <p>{{activeClient.companyName}}</p>
+
+                                    <strong>Full Name:</strong>
+                                    <p>{{activeClient.fullName}}</p>
+
+                                    <strong>Email Address:</strong>
+                                    <p>{{activeClient.emailAddress}}</p>
+
+                                    <strong>Phone Number:</strong>
+                                    <p>{{activeClient.phoneNumber}}</p>
+
+                                    <strong>Website:</strong>
+                                    <p><a href="http://{{activeClient.website}}">{{activeClient.website}}</a></p>
+
+                                    <strong>Address 1:</strong>
+                                    <p>{{activeClient.address1}}</p>
+
+                                    <strong>Address 2:</strong>
+                                    <p>{{activeClient.address2}}</p>
+
+                                    <strong>City:</strong>
+                                    <p>{{activeClient.city}}</p>
+
+                                    <strong>State/Province:</strong>
+                                    <p>{{activeClient.state}}</p>
+
+                                    <strong>ZIP/Postal Code:</strong>
+                                    <p>{{activeClient.zip}}</p>
+
+                                    <strong>Country:</strong>
+                                    <p>{{activeClient.country}}</p>
+                            </div>
+                        </div>
+                        <div id="contact-4" class="tab-pane active" ng-show="client == 4">
+                            <div class="row m-b-lg">
+                                <div class="col-lg-4 text-center">
+                                    <h2>Reuben Pacheco</h2>
+
+                                    <div class="m-b-sm">
+                                        <img alt="image" class="img-circle" src="img/a5.jpg"
+                                             style="width: 62px">
+                                    </div>
+                                </div>
+                                <div class="col-lg-8">
+                                    <strong>
+                                        About me
+                                    </strong>
+
+                                    <p>
+                                        Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero,written in 45 BC. This book is a treatise on.
+                                    </p>
+                                    <button type="button" class="btn btn-primary btn-sm btn-block"><i
+                                            class="fa fa-envelope"></i> Send Message
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="client-detail">
+                                <div class="full-height-scroll" full-scroll>
+
+                                    <strong>Last activity</strong>
+
+                                    <ul class="list-group clear-list">
+                                        <li class="list-group-item fist-item">
+                                            <span class="pull-right"> 09:00 pm </span>
+                                            The point of using
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="pull-right"> 10:16 am </span>
+                                            Lorem Ipsum is that it has
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="pull-right"> 08:22 pm </span>
+                                            Text, and a search for 'lorem ipsum'
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="pull-right"> 11:06 pm </span>
+                                            Passages of Lorem Ipsum
+                                        </li>
+                                        <li class="list-group-item">
+                                            <span class="pull-right"> 12:00 am </span>
+                                            If you are going
+                                        </li>
+                                    </ul>
+                                    <strong>Notes</strong>
+                                    <p>
+                                        Lorem Ipsum which looks reasonable. The generated Lorem Ipsum is therefore always free from repetition, injected humour, or non-characteristic words etc.
+                                    </p>
+                                    <hr/>
+                                    <strong>Timeline activity</strong>
+                                    <div id="vertical-timeline" class="vertical-container dark-timeline">
+                                        <div class="vertical-timeline-block">
+                                            <div class="vertical-timeline-icon gray-bg">
+                                                <i class="fa fa-coffee"></i>
+                                            </div>
+                                            <div class="vertical-timeline-content">
+                                                <p>Conference on the sales results for the previous year.
+                                                </p>
+                                                <span class="vertical-date small text-muted"> 2:10 pm - 12.06.2014 </span>
+                                            </div>
+                                        </div>
+                                        <div class="vertical-timeline-block">
+                                            <div class="vertical-timeline-icon gray-bg">
+                                                <i class="fa fa-briefcase"></i>
+                                            </div>
+                                            <div class="vertical-timeline-content">
+                                                <p>Many desktop publishing packages and web page editors now use Lorem.
+                                                </p>
+                                                <span class="vertical-date small text-muted"> 4:20 pm - 10.05.2014 </span>
+                                            </div>
+                                        </div>
+                                        <div class="vertical-timeline-block">
+                                            <div class="vertical-timeline-icon gray-bg">
+                                                <i class="fa fa-bolt"></i>
+                                            </div>
+                                            <div class="vertical-timeline-content">
+                                                <p>There are many variations of passages of Lorem Ipsum available.
+                                                </p>
+                                                <span class="vertical-date small text-muted"> 06:10 pm - 11.03.2014 </span>
+                                            </div>
+                                        </div>
+                                        <div class="vertical-timeline-block">
+                                            <div class="vertical-timeline-icon navy-bg">
+                                                <i class="fa fa-warning"></i>
+                                            </div>
+                                            <div class="vertical-timeline-content">
+                                                <p>The generated Lorem Ipsum is therefore.
+                                                </p>
+                                                <span class="vertical-date small text-muted"> 02:50 pm - 03.10.2014 </span>
+                                            </div>
+                                        </div>
+                                        <div class="vertical-timeline-block">
+                                            <div class="vertical-timeline-icon gray-bg">
+                                                <i class="fa fa-coffee"></i>
+                                            </div>
+                                            <div class="vertical-timeline-content">
+                                                <p>Conference on the sales results for the previous year.
+                                                </p>
+                                                <span class="vertical-date small text-muted"> 2:10 pm - 12.06.2014 </span>
+                                            </div>
+                                        </div>
+                                        <div class="vertical-timeline-block">
+                                            <div class="vertical-timeline-icon gray-bg">
+                                                <i class="fa fa-briefcase"></i>
+                                            </div>
+                                            <div class="vertical-timeline-content">
+                                                <p>Many desktop publishing packages and web page editors now use Lorem.
+                                                </p>
+                                                <span class="vertical-date small text-muted"> 4:20 pm - 10.05.2014 </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

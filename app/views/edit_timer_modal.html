@@ -1,0 +1,59 @@
+<div class="inmodal">
+    <div class="modal-header">
+        <i class="fa fa-laptop modal-icon"></i>
+        <h4 class="modal-title">Timer Details</h4>
+        <small class="font-bold">Edit details for your timer.</small>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>
+                <h2>Timer Details</h2>
+            </label>
+            <br />
+            <label>Billed</label>
+            <br />
+            <select style="width: 20%" class="form-control" 
+                    ng-model="results.billed" 
+                    ng-options="o.v as o.n for o in [{ n: 'No', v: false }, { n: 'Yes', v: true }]">
+            </select>
+            <br />
+            <label>Notes</label>
+            <br />
+            <input style="width: 80%" class="form-control" type="text" placeholder="Notes" ng-model="results.notes" />
+            <br />
+            <label>Project</label>
+            <br />
+            <select style="width: 80%" class="form-control" ng-model="results.projectId" ng-change="fetchTasks()">
+                <option ng-repeat="project in projects" value="{{project.id}}">{{project.title}}</option>
+            </select>
+            <br />
+            <label>Task</label>
+            <br />
+            <select style="width: 80%" class="form-control" ng-model="results.taskId">
+                <option ng-repeat="task in tasks" value="{{task.id}}">{{task.title}}</option>
+            </select>
+            <br />
+            <label>Start Date</label>
+            <br />
+            <div class="input-group dropup" style="width:80%">
+                <input type="text" class="form-control" datetime-picker="MM/dd/yy h:mm:ss a" ng-model="results.startDate" is-open="isOpen1" ng-click="openCalendar1($event, prop)" save-as="dateToUnix" read-as="unixToDate" timepicker-options="{showSeconds:true}" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="openCalendar1($event, prop)"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+            <br />
+            <label>End Date</label>
+            <br />
+            <div class="input-group dropup" style="width:80%">
+                <input type="text" class="form-control" datetime-picker="MM/dd/yy h:mm:ss a" ng-model="results.endDate" is-open="isOpen2" ng-click="openCalendar2($event, prop)" save-as="dateToUnix" read-as="unixToDate" timepicker-options="{showSeconds:true}" />
+                <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="openCalendar2($event, prop)"><i class="fa fa-calendar"></i></button>
+                </span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-white" ng-click="cancel()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="ok()">Save changes</button>
+    </div>
+</div>

@@ -1,0 +1,111 @@
+<style>
+    /* CSS for Credit Card Payment form */
+    
+    .panel-title {
+        display: inline;
+        font-weight: bold;
+    }
+    
+    .checkbox.pull-right {
+        margin: 0;
+    }
+    
+    .pl-ziro {
+        padding-left: 0px;
+    }
+    
+    .form-control.error {
+        border-color: red;
+        outline: 0;
+        box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(255, 0, 0, 0.6);
+    }
+    
+    label.error {
+        font-weight: bold;
+        color: red;
+        padding: 2px 8px;
+        margin-top: 2px;
+    }
+    
+    .payment-errors {
+        font-weight: bold;
+        color: red;
+        padding: 2px 8px;
+        margin-top: 2px;
+    }
+</style>
+<div class="inmodal">
+    <div class="modal-header">
+        <h4 class="modal-title">Start making your life easier.</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-xs-8 col-md-8 col-xs-offset-2 col-md-offset-2">
+                <div class="widget style1 navy-bg">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <i class="fa fa-check-circle fa-5x"></i>
+                        </div>
+                        <div class="col-xs-8 text-right">
+                            <span> Only</span>
+
+                            <h2 class="font-bold">$14 / Month</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8 col-md-8 col-xs-offset-2 col-md-offset-2">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><img class="pull-right" src="http://i76.imgup.net/accepted_c22e0.png">Payment Details</h3>
+                    </div>
+                    <div class="panel-body">
+                        <form action="#" name="cardForm" data-card data-width="500" data-card-container="#card-container" data-placeholders="cardPlaceholders" data-options="cardOptions" data-messages="cardMessages">
+                            <br />
+                            <div>
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="Card Number" type="text" name="CardNumber" card-number data-ng-model="card.number" required autofocus />
+                                    <span class="input-group-addon"><i class="fa fa-credit-card"></i></span>
+                                </div>
+                                <br />
+                                <div class="input-group">
+                                    <input class="form-control" placeholder="Full Name" type="text" name="CardName" card-name data-ng-model="card.name" required />
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-xs-6 col-md-6">
+                                    <div class="input-group">
+                                        <input class="form-control" placeholder="MM / YYYY" type="text" name="CardExpiry" card-expiry data-ng-model="card.expiry" />
+                                        <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                    </div>
+                                </div>
+                                <div class="col-xs-4 col-md-4 col-xs-offset-2 col-md-offset-2">
+                                    <input class="form-control col-lg-5" placeholder="CVC" type="text" name="CardCvc" card-cvc data-ng-model="card.cvc" />
+                                </div>
+                            </div>
+                            <br />
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <button class="subscribe btn btn-success btn-lg btn-block" type="button" ng-click="ok()"><i class="fa fa-lock"></i> Activate Subscription</button>
+                                </div>
+                            </div>
+
+                        </form>
+                    </div>
+                </div>
+                <div id='card-container'></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-8 col-md-8 col-xs-offset-2 col-md-offset-2">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-white" ng-click="cancel()">Close</button>
+    </div>
+</div>

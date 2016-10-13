@@ -1,0 +1,31 @@
+{
+  "name": "angular-card",
+  "version": "0.3.7",
+  "description": "Angular directive for card https://github.com/jessepollak/card",
+  "main": "src/card.js",
+  "directories": {
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gavruk@github.com/gavruk/angular-card.git"
+  },
+  "keywords": [
+    "angular",
+    "credit",
+    "card"
+  ],
+  "author": "Sergey Gavruk <svgavruk@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/gavruk/angular-card/issues"
+  },
+  "homepage": "https://github.com/gavruk/angular-card#readme",
+  "dependencies": {
+    "card": "~1.2.2",
+    "angular": "~1.4.8"
+  }
+}

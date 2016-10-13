@@ -1,0 +1,31 @@
+<div class="row border-bottom">
+    <nav class="navbar navbar-fixed-top white-bg" role="navigation">
+        <div class="navbar-header">
+            <span minimaliza-sidebar></span>
+            <a class="navbar-brand" ui-sref="app.dashboard" style="padding-top:20px;padding-bottom:20px">
+                <span><img src="img/dashlance-logo-large.png" style="height:18px;"></span>
+                <span class="text-muted label label-default">Beta</span>
+            </a>
+        </div>
+        <ul class="nav navbar-nav" ng-hide="true">
+            <li uib-dropdown>
+                    <a class="dropdown-toggle" href uib-dropdown-toggle> {{main.currentProject.title || "Select a project"}} <span class="caret"></span></a>
+                    <ul class="dropdown-menu animated fadeInDown m-t-xs">
+                        <li ng-repeat="project in main.projectList"><a href="" ng-click="main.switchCurrentProject(project)">{{project.title}}</a></li>
+                    </ul>
+                </li>
+            <li>
+        </ul>
+
+        <ul class="nav navbar-top-links navbar-right">
+            <li ng-show="false">
+                <button type="button" class="btn btn-warning navbar-btn" ng-click="main.activateSubscription()"><i class="fa fa-check-square-o"></i> Activate Subscription</button>
+            </li>
+            <li class="hidden-xs">
+                <a ng-click="main.logout()" style="color:#FF2B04">
+                    <i class="fa fa-sign-out"></i> Log out
+                </a>
+            </li>
+        </ul>
+    </nav>
+</div>

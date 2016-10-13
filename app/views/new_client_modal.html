@@ -1,0 +1,38 @@
+<div class="inmodal">
+    <div class="modal-header">
+        <i class="fa fa-laptop modal-icon"></i>
+        <h4 class="modal-title">New Client</h4>
+        <small class="font-bold">Enter details for your new client.</small>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label><h2>Client Details</h2></label>
+            <br /><br /><label>Company Name</label><br />
+            <input class="form-control input-lg" type="text" placeholder="XYZ Inc" ng-model="results.companyName"/>
+            <br /><label>Full Name</label><br />
+            <input class="form-control input-lg" type="text" placeholder="John Smith" ng-model="results.fullName"/>
+            <br /><label>Email Address</label><br />
+            <input class="form-control input-lg" type="text" placeholder="john.smith@xyz.com" ng-model="results.emailAddress"/>
+            <br /><label>Phone Number</label><br />
+            <input class="form-control input-lg" type="text" placeholder="123-456-7890" ng-model="results.phoneNumber"/>
+            <br /><label>Website</label><br />
+            <input class="form-control input-lg" type="text" placeholder="www.xyz.com" ng-model="results.website"/>
+            <br /><label>Address 1</label><br />
+            <input class="form-control input-lg" type="text" placeholder="123 Main St." ng-model="results.address1"/>
+            <br /><label>Address 2</label><br />
+            <input class="form-control input-lg" type="text" placeholder="Unit 2" ng-model="results.address2"/>
+            <br /><label>City</label><br />
+            <input class="form-control input-lg" type="text" placeholder="New York" ng-model="results.city"/>
+            <br /><label>State/Province</label><br />
+            <input class="form-control input-lg" type="text" placeholder="NY" ng-model="results.state"/>
+            <br /><label>ZIP/Postal Code</label><br />
+            <input class="form-control input-lg" type="text" placeholder="12345" ng-model="results.zip"/>
+            <br /><label>Country</label><br />
+            <input class="form-control input-lg" type="text" placeholder="United States" ng-model="results.country"/>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-white" ng-click="cancel()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="ok()">Add Client</button>
+    </div>
+</div>

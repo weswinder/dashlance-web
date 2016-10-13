@@ -1,0 +1,47 @@
+<div class="inmodal">
+    <div class="modal-header">
+        <i class="fa fa-laptop modal-icon"></i>
+        <h4 class="modal-title">New Project</h4>
+        <small class="font-bold">Enter details for your new project.</small>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label>
+                <h2>Project Details</h2>
+            </label>
+            <br />
+            <label>Status</label>
+            <br />
+            <select style="width: 20%" class="form-control" ng-model="results.status">
+                <option selected value="0">Active</option>
+                <option value="1">Inactive</option>
+                <option value="2">Complete</option>
+            </select>
+            <br />
+            <label>Title</label>
+            <br />
+            <input class="form-control" type="text" placeholder="My Project" ng-model="results.title" />
+            <br />
+            <label>Client</label>
+            <br />
+            <select style="width: 50%" class="form-control" ng-model="results.clientId">
+                <option ng-repeat="client in clients" value="{{client.$id}}">{{client.fullName || client.companyName}}</option>
+            </select>
+            <br />
+            <label>Due Date</label>
+            <br />
+            <div class="input-group" style="width:50%">
+                <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="results.dueDate" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" ng-click="open1()" />
+                <span class="input-group-btn">
+                <button type="button" class="btn btn-default" ng-click="open1()">
+                    <i class="glyphicon glyphicon-calendar"></i>
+                </button>
+            </span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-white" ng-click="cancel()">Close</button>
+        <button type="button" class="btn btn-primary" ng-click="ok()">Add Project</button>
+    </div>
+</div>

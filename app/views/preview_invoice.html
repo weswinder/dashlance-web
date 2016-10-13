@@ -1,0 +1,36 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="alert alert-warning col-lg-6 col-lg-offset-3" ng-hide="invoiceCtrl.isChrome">
+        <center>Please use <a href="http://www.google.com/chrome/browser" target="_blank">Google Chrome</a> for proper download/print functionality.</center>
+    </div>
+    <div class="col-lg-8">
+        <h2>Invoice Preview</h2>
+        <p><a ui-sref="app.invoices.list" class="btn btn-primary"><i class="fa fa-chevron-left"></i> Back to Invoices </a></p>
+        <p><a ui-sref="app.invoices.edit({invoiceId: invoiceCtrl.invoice.$id})" class="btn btn-warning"><i class="fa fa-pencil"></i> Edit Invoice </a></p>
+    </div>
+    <div class="col-lg-4">
+        <div class="title-action">
+            <a href="" class="btn btn-default" id="downloadPdf" ng-click="invoiceCtrl.downloadInvoice()"><i class="fa fa-download"></i> Download Invoice </a>
+            <br />
+            <br />
+            <a href="" ng-click="invoiceCtrl.printInvoice()" class="btn btn-default" ng-show="invoiceCtrl.isChrome"><i class="fa fa-print"></i> Print Invoice </a>
+            <a href="" ng-click="invoiceCtrl.printInvoice()" class="btn btn-default disabled" ng-hide="invoiceCtrl.isChrome"><i class="fa fa-print"></i> Print Invoice </a>
+        </div>
+    </div>
+</div>
+<div class="white-bg">
+    <div class="wrapper wrapper-content p-xl">
+        <div class="ibox-content p-xl">
+            <ng-pdf ng-if="pdfUrl" template-url="views/pdf_viewer.html" scale="page-fit"></ng-pdf>
+        </div>
+
+    </div>
+
+    <script type="text/javascript">
+        /*
+        $("#downloadPdf").click(function() {
+            pdfMake.createPdf(dd).download('invoice.pdf');
+        });
+        */  
+    </script>
+
+</div>

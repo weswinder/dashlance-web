@@ -1,0 +1,55 @@
+<div class="wrapper wrapper-content" style="padding-top:0px">
+    <div class="text-center m-t-lg"></div>
+    <div class="alert alert-warning col-lg-6 col-lg-offset-3" ng-hide="timersCtrl.projects.length > 0">
+        <center>You must create a project before you can start tracking time</center>
+    </div>
+    <div class="alert alert-info col-lg-6 col-lg-offset-3" ng-show="timersCtrl.timers.length <= 0 && timersCtrl.projects.length > 0">
+        <center><i class="fa fa-arrow-down" aria-hidden="true"></i> Shouldn't you start tracking some time? <i class="fa fa-arrow-down" aria-hidden="true"></i></center>
+    </div>
+<div class="row" ng-show="timersCtrl.timers.length > 0">
+    <div class="col-lg-12">
+        <div class="ibox float-e-margins">
+            <div class="ibox-title">
+                <h5>All timers for this account</h5>
+            </div>
+            <div class="ibox-content">
+                <div class="project-list" ng-show="timersCtrl.loaded">
+                    <table class="table table-hover">
+                        <thead>
+                        <tr>
+                            <th>Status</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Duration</th>
+                            <th>Project</th>
+                            <th>Task</th>
+                            <th>Notes</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="timer in timersCtrl.timers | orderBy: '-startDate'">
+                            <td class="project-status">
+                                <button class="btn btn-disabled btn-sm" ng-click="timer.billed = !timer.billed;timersCtrl.updateTimer(timer)" ng-hide="timer.billed"><i class="fa fa-times"></i> Billed</button>
+                                <button class="btn btn-success btn-sm" ng-click="timer.billed = !timer.billed;timersCtrl.updateTimer(timer)" ng-show="timer.billed"><i class="fa fa-check"></i> Billed</button>
+                            </td>
+                            <td style="width:100px">{{timersCtrl.getStartDate(timer)}}</td>
+                            <td style="width:100px">{{timersCtrl.getEndDate(timer)}}</td>
+                            <td>{{timersCtrl.getTime(timer)}}</td>
+                            <td style="width:120px">{{timersCtrl.getProjectTitle(timer)}}</td>
+                            <td class="project-title" style="width:200px"><a ui-sref="app.tasks">{{timersCtrl.getTaskTitle(timer) | words:10}}</a></td>
+                            <td style="width:200px">{{timer.notes}}</td>
+                            <td>
+                                <a class="btn btn-white btn-sm" ng-click="timersCtrl.editTimer(timer)"><i class="fa fa-pencil fa-lg"></i></a>
+                                <a class="btn btn-danger btn-sm" ng-click="timersCtrl.deleteTimer(timer)"><i class="fa fa-trash fa-lg"></i></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+</div>

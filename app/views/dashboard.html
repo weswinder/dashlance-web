@@ -1,0 +1,133 @@
+<div class="row">
+        <div class="col-lg-12">
+            <div class="text-center m-t-lg">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="widget style1 navy-bg" ui-sref="app.projects">
+            <div class="row">
+                <div class="col-xs-4">
+                    <i class="fa fa-bolt fa-5x"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                    <span> Active Projects</span>
+
+                    <h2 class="font-bold">{{(dashboardCtrl.projects|filter:{"status":0}).length}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="widget style1 yellow-bg" ui-sref="app.projects">
+            <div class="row">
+                <div class="col-xs-4">
+                    <i class="fa fa-bookmark-o fa-5x"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                    <span> Inactive Projects</span>
+
+                    <h2 class="font-bold">{{(dashboardCtrl.projects|filter:{"status":1}).length}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="widget style1 lazur-bg" ui-sref="app.projects">
+            <div class="row">
+                <div class="col-xs-4">
+                    <i class="fa fa-archive fa-5x"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                    <span> Completed Projects</span>
+
+                    <h2 class="font-bold">{{(dashboardCtrl.projects|filter:{"status":2}).length}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="widget style1 yellow-bg" ui-sref="app.tasks">
+            <div class="row">
+                <div class="col-xs-4">
+                    <i class="fa fa-bell-o fa-5x"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                    <span> To-do Tasks</span>
+
+                    <h2 class="font-bold">{{dashboardCtrl.toDoLength}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="widget style1 navy-bg" ui-sref="app.tasks">
+            <div class="row">
+                <div class="col-xs-4">
+                    <i class="fa fa-clock-o fa-5x"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                    <span> In Progress Tasks</span>
+
+                    <h2 class="font-bold">{{dashboardCtrl.inProgressLength}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="widget style1 lazur-bg" ui-sref="app.tasks">
+            <div class="row">
+                <div class="col-xs-4">
+                    <i class="fa fa-check fa-5x"></i>
+                </div>
+                <div class="col-xs-8 text-right">
+                    <span> Completed Tasks</span>
+
+                    <h2 class="font-bold">{{dashboardCtrl.completeLength}}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6">
+        <div class="widget navy-bg no-padding" ui-sref="app.timers">
+            <div class="p-m">
+                <h1 class="m-xs">{{dashboardCtrl.timersTotalSeconds / 3600 | number:1}} hrs</h1>
+
+                <h3 class="font-bold no-margins">
+                Tracked
+                </h3>
+                <small>All Projects</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="widget lazur-bg no-padding" ui-sref="app.invoices.list">
+            <div class="p-m">
+                <h1 class="m-xs">${{dashboardCtrl.invoicesTotalPayments | number:2}}</h1>
+
+                <h3 class="font-bold no-margins">
+                    Payments received
+                </h3>
+                <small>All Projects</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-3">
+        <div class="widget yellow-bg no-padding" ui-sref="app.invoices.list">
+            <div class="p-m">
+                <h1 class="m-xs">${{dashboardCtrl.invoicesGrandTotal | number:2}}</h1>
+
+                <h3 class="font-bold no-margins">
+                    Outstanding Invoices
+                </h3>
+                <small>All Projects</small>
+            </div>
+        </div>
+    </div>
+</div>

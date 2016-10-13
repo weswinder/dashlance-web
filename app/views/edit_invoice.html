@@ -1,0 +1,130 @@
+<div class="row wrapper border-bottom white-bg page-heading">
+    <div class="col-lg-8">
+        <h2>New Invoice</h2>
+        <p><a ui-sref="app.invoices.list" class="btn btn-primary"><i class="fa fa-chevron-left"></i> Back to Invoices </a></p>
+        <small>All changes are saved automatically</small>
+    </div>
+    <div class="col-lg-4">
+        <div class="title-action">
+            <a ui-sref="invoicePreview({invoiceId: invoiceCtrl.invoice.$id})" class="btn btn-primary"><i class="fa fa-file"></i> Preview Invoice </a>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-8">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="ibox-content p-xl">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <h5>From:</h5>
+                        <address>
+                            <strong editable-text="invoiceCtrl.invoice.user.companyName" onaftersave="invoiceCtrl.updateInvoice()">{{invoiceCtrl.invoice.user.companyName || 'Company name'}}</strong><br>
+                            <span editable-text="invoiceCtrl.invoice.user.address1" onaftersave="invoiceCtrl.updateInvoice()">{{ invoiceCtrl.invoice.user.address1 || 'Address' }}</span><br>
+                            <span editable-text="invoiceCtrl.invoice.user.city" onaftersave="invoiceCtrl.updateInvoice()">{{ invoiceCtrl.invoice.user.city || 'City' }}</span>, <span editable-text="invoiceCtrl.invoice.user.state" onaftersave="invoiceCtrl.updateInvoice()">{{ invoiceCtrl.invoice.user.state || 'State' }}</span> <span editable-text="invoiceCtrl.invoice.user.zip" onaftersave="invoiceCtrl.updateInvoice()">{{ invoiceCtrl.invoice.user.zip || 'ZIP' }}</span><br>
+                            <abbr title="Phone"></abbr> <span editable-text="invoiceCtrl.invoice.user.phoneNumber" onaftersave="invoiceCtrl.updateInvoice()">{{invoiceCtrl.invoice.user.phoneNumber || 'Phone Number'}}</span>
+                        </address>
+                    </div>
+
+                    <div class="col-sm-6 text-right">
+                        <h4>Invoice No.</h4>
+                        <h4 class="text-navy"><strong editable-number="invoiceCtrl.invoice.number" onaftersave="invoiceCtrl.updateInvoice()">{{("0000" + invoiceCtrl.invoice.number).substr(-4,4) || '0001'}}</strong></h4>
+                        <span>To:</span>
+                        <address>
+                            <strong editable-text="invoiceCtrl.invoice.client.companyName" onaftersave="invoiceCtrl.updateInvoice()">{{invoiceCtrl.invoice.client.companyName || 'Company Name'}}</strong><br>
+                            <span editable-text="invoiceCtrl.invoice.client.address1" onaftersave="invoiceCtrl.updateInvoice()">{{ invoiceCtrl.invoice.client.address1 || 'Address' }}</span><br>
+                            <span editable-text="invoiceCtrl.invoice.client.city" onaftersave="invoiceCtrl.updateInvoice()">{{ invoiceCtrl.invoice.client.city || 'City' }}</span>, <span editable-text="invoiceCtrl.invoice.client.state" onaftersave="invoiceCtrl.updateInvoice()">{{ invoiceCtrl.invoice.client.state || 'State' }}</span> <span editable-text="invoiceCtrl.invoice.client.zip" onaftersave="invoiceCtrl.updateInvoice()">{{ invoiceCtrl.invoice.client.zip || 'ZIP' }}</span><br>
+                            <abbr title="Phone"></abbr> <span editable-text="invoiceCtrl.invoice.client.phoneNumber" onaftersave="invoiceCtrl.updateInvoice()">{{invoiceCtrl.invoice.client.phoneNumber || 'Phone Number'}}</span>
+                        </address>
+                        <p>
+                            <span><strong>Invoice Date:</strong> <span editable-text="invoiceCtrl.invoice.invoiceDate" onaftersave="invoiceCtrl.updateInvoice()">{{invoiceCtrl.invoice.invoiceDate || 'empty'}}</span></span>
+                            <br/>
+                            <span><strong>Payment Due:</strong> <span editable-text="invoiceCtrl.invoice.dueDate" onaftersave="invoiceCtrl.updateInvoice()">{{invoiceCtrl.invoice.dueDate || 'empty'}}</span></span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="table-responsive m-t" ng-mouseenter="showAddItem=true" ng-mouseleave="showAddItem=false">
+                    <table class="table invoice-table">
+                        <thead>
+                            <tr>
+                                <th>Item List</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th>Total Price</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in invoiceCtrl.invoice.lineItems">
+                                <td>
+                                    <div><strong editable-text="item.title" onaftersave="invoiceCtrl.updateInvoice()">{{item.title || "Task title here"}}</strong></div>
+                                    <small editable-text="item.description" onaftersave="invoiceCtrl.updateInvoice()">{{item.description || "Enter description here"}}</small>
+                                </td>
+                                <td style="width: 100px"><span e-style="width: 60px" editable-number="item.hours" onaftersave="invoiceCtrl.setItemTotal(item);invoiceCtrl.lineItemsChange();">{{item.hours || 0}}</span></td>
+                                <td style="width: 100px"><span e-style="width: 60px" editable-number="item.unitPrice" onaftersave="invoiceCtrl.setItemTotal(item);invoiceCtrl.lineItemsChange();">${{item.unitPrice || 0 | number:2}}</span></td>
+                                <td style="width: 100px">{{invoiceCtrl.invoice.currency=='EUR' && '&euro;' || invoiceCtrl.invoice.currency=='GBP' && '&pound;' || '$'}}{{item.total || 0 | number:2}}</td>
+                                <td style="width: 60px">
+                                    <button class="btn btn-danger" ng-click="invoiceCtrl.invoice.lineItems.splice($index,1);invoiceCtrl.lineItemsChange()"><i class="fa fa-trash"></i></button>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <button class="btn btn-primary" ng-click="invoiceCtrl.addItem()"><i class="fa fa-plus"></i> Add item </button>
+                </div>
+                <!-- /table-responsive -->
+
+                <table class="table invoice-total">
+                    <tbody>
+                        <tr>
+                            <td><strong>Sub Total :</strong></td>
+                            <td>{{invoiceCtrl.invoice.currency=='EUR' && '&euro;' || invoiceCtrl.invoice.currency=='GBP' && '&pound;' || '$'}}{{invoiceCtrl.invoice.subtotal | number:2}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TAX: <span editable-number="invoiceCtrl.invoice.taxPercent" onaftersave="invoiceCtrl.lineItemsChange()">{{ invoiceCtrl.invoice.taxPercent || 0 }}%</span></strong></td>
+                            <td>{{invoiceCtrl.invoice.currency=='EUR' && '&euro;' || invoiceCtrl.invoice.currency=='GBP' && '&pound;' || '$'}}{{invoiceCtrl.invoice.taxTotal | number:2}}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TOTAL ({{invoiceCtrl.invoice.currency}}):</strong></td>
+                            <td>{{invoiceCtrl.invoice.currency=='EUR' && '&euro;' || invoiceCtrl.invoice.currency=='GBP' && '&pound;' || '$'}}{{invoiceCtrl.invoice.total | number:2}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="well m-t"><strong>Comments:</strong>
+                    <span e-style="width: 400px" editable-text="invoiceCtrl.invoice.comments" onaftersave="invoiceCtrl.updateInvoice()">{{invoiceCtrl.invoice.comments || 'Click here to add comments'}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="wrapper wrapper-content animated fadeInRight">
+            <div class="ibox-content p-xl">
+                <div class="form-group">
+                    <label>
+                        <h2>Invoice Settings</h2></label>
+                    <br />
+                    <br />
+                    <label>Client</label>
+                    <br />
+                    <select class="form-control" ng-model="invoiceCtrl.invoice.client.id" ng-change="invoiceCtrl.setInvoiceClient()">
+                        <option ng-repeat="client in invoiceCtrl.clients" value="{{client.$id}}">{{client.companyName}} {{'(' + client.fullName + ')'}}</option>
+                    </select>
+                    <br />
+                    <label>Currency</label>
+                    <br />
+                    <select class="form-control" ng-model="invoiceCtrl.invoice.currency" ng-change="invoiceCtrl.updateInvoice()">
+                        <option value="USD">USD</option>
+                        <option value="CAD">CAD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="GBP">GBP</option>
+                    </select>
+                    <br />
+                    <label>Amount Received</label>
+                    <br />
+                    <span editable-number="invoiceCtrl.invoice.payment" onaftersave="invoiceCtrl.updateInvoice()">{{invoiceCtrl.invoice.currency=='EUR' && '&euro;' || invoiceCtrl.invoice.currency=='GBP' && '&pound;' || '$'}}{{invoiceCtrl.invoice.payment || 0}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

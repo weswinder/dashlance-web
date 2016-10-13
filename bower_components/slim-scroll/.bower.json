@@ -1,0 +1,14 @@
+{
+  "name": "slim-scroll",
+  "homepage": "https://github.com/venkateshwar/slim-scroll",
+  "version": "1.2.1",
+  "_release": "1.2.1",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.2.1",
+    "commit": "720e28d4b9c2ee98a0161eb09401d169f89312c8"
+  },
+  "_source": "https://github.com/venkateshwar/slim-scroll.git",
+  "_target": "*",
+  "_originalSource": "slim-scroll"
+}

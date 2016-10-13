@@ -1,0 +1,6 @@
+<span ng-click="tasksCtrl.editTask(task)">{{task.title}}</span>
+<div class="agile-detail">
+	<button class="btn btn-default btn-xs pull-right" ng-click="tasksCtrl.editTask(task)"><i class="fa fa-pencil fa-lg"></i></button>
+	<button class="btn btn-danger btn-xs pull-right" ng-click="tasksCtrl.deleteTask(task)"><i class="fa fa-trash-o fa-lg"></i></button>
+	<button class="btn btn-white btn-xs">{{task.milestone}}</button>
+</div>

@@ -1,0 +1,57 @@
+<nav class="navbar-default navbar-static-side" role="navigation">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu" id="side-menu">
+
+            <li class="nav-header">
+        
+                <div class="profile-element" uib-dropdown>
+
+                    <a href="http://www.gravatar.com" target="_blank"><img alt="image" class="img-circle" ng-src="{{ main.profile.image }}" style="width:50px"></a>
+                    <a uib-dropdown-toggle href>
+                            <span class="clear">
+                                <span class="block m-t-xs" >
+                                    <strong class="font-bold">{{main.profile.fullName}}</strong>
+                                </span>
+                                <span class="text-muted text-xs block">{{main.profile.jobTitle}}</span>
+                            </span>
+                    </a>
+                    <ul uib-dropdown-menu class="animated flipInX m-t-xs">
+                        <li><a ui-sref="app.profile">Settings</a></li>
+                    </ul>
+                </div>
+
+            </li>
+
+            <li ui-sref-active="active">
+                <a ui-sref="app.dashboard"><i class="fa fa-dashboard"></i> <span class="nav-label">Dashboard</span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.clients"><i class="fa fa-users"></i> <span class="nav-label">Clients</span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.projects"><i class="fa fa-inbox"></i> <span class="nav-label">Projects</span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.tasks"><i class="fa fa-tasks"></i> <span class="nav-label">Tasks</span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.timers"><i class="fa fa-clock-o"></i> <span class="nav-label">Timesheet</span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.invoices.list"><i class="fa fa-file-text"></i> <span class="nav-label">Invoices</span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.notes"><i class="fa fa-sticky-note"></i> <span class="nav-label">Notes</span> </a>
+            </li>
+            <li ui-sref-active="active">
+                <a ui-sref="app.profile"><i class="fa fa-gear"></i> <span class="nav-label">Settings</span> </a>
+            </li>
+            <!--
+            <li ui-sref-active="active">
+                <a ui-sref="index.minor"><i class="fa fa-desktop"></i> <span class="nav-label">Minor page</span></a>
+            </li>
+            -->
+        </ul>
+
+    </div>
+</nav>

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html ng-app="dashlance">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Page title set in pageTitle directive -->
+    <title page-title></title>
+
+    <!-- Google Open Sans -->
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700' rel='stylesheet' type='text/css'>
+
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <!-- Font awesome -->
+    <link href="bower_components/fontawesome/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- X-Editable CSS -->
+    <link href="bower_components/angular-xeditable/dist/css/xeditable.min.css" rel="stylesheet">
+
+    <!-- Main CSS files -->
+    <!-- endbower -->
+    <!-- endbuild -->
+
+    <!-- build:css({.tmp,app}) styles/style.css -->
+    <link href="styles/animate.css" rel="stylesheet">
+    <link href="styles/style.css" rel="stylesheet">
+    <!-- endbuild -->
+
+
+
+</head>
+
+<!-- ControllerAs syntax -->
+<!-- Main controller: data used in different view -->
+<body class="fixed-nav">
+
+<!-- Main view  -->
+<div ui-view></div>
+
+
+<!-- build:js(.) scripts/vendor.js -->
+
+<!-- jQuery and Bootstrap -->
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/jquery-ui/jquery-ui.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+
+<!-- MetsiMenu -->
+<script src="bower_components/metisMenu/dist/metisMenu.min.js"></script>
+
+<!-- SlimScroll -->
+<script src="bower_components/slimScroll/jquery.slimscroll.min.js"></script>
+
+<!-- Peace JS -->
+<script src="bower_components/pace/pace.min.js"></script>
+
+<!-- Moment JS -->
+<script src="bower_components/moment/min/moment.min.js"></script>
+
+<!-- Numeral JS -->
+<script src="bower_components/numeral/min/numeral.min.js"></script>
+
+<!-- Angular scripts-->
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+<script src="bower_components/bootstrap-ui-datetime-picker/dist/datetime-picker.min.js"></script>
+
+<!-- Firebase -->
+<script src="bower_components/firebase/firebase.js"></script>
+
+<!-- AngularFire -->
+<script src="bower_components/angularfire/dist/angularfire.min.js"></script>
+
+<!-- Angular MD5 -->
+<script src="bower_components/angular-md5/angular-md5.js"></script>
+
+<!-- Angular UI Sortable-->
+<script src="bower_components/angular-ui-sortable/sortable.min.js"></script>
+
+<!-- Angular X-Editable-->
+<script src="bower_components/angular-xeditable/dist/js/xeditable.min.js"></script>
+
+<!-- Checkpoint Array for Firebase -->
+ <script src="bower_components/firebaseCheckpointArray/firebaseCheckpointArray.js"></script>
+    
+<!-- Card for Subscription Form -->
+<script src="bower_components/card/lib/js/card.js"></script>
+<script src="bower_components/angular-card/src/card.js"></script>
+    
+<!-- pdfMake -->
+<script src="bower_components/pdfmake/build/pdfmake.js"></script>
+<script src="bower_components/pdfmake/build/vfs_fonts.js"></script>
+    
+<!-- Angular Truncate -->
+<script src="bower_components/angular-truncate-2/src/angular-truncate-2.js"></script>
+
+<!-- Angular Dependiences -->
+<!--                      -->
+<!--                      -->
+<!--                      -->
+
+<!-- endbuild -->
+
+<!-- Start non-build scripts -->
+
+<!-- Angular PDF -->
+<script src="bower_components/pdfjs-dist/build/pdf.js"></script>
+<script src="bower_components/angular-pdf/dist/angular-pdf.js"></script>
+    
+<!-- End non-build scripts -->
+
+<!-- build:js({.tmp,app}) scripts/scripts.js -->
+<!-- Custom and plugin javascript -->
+<script src="scripts/custom.js"></script>
+
+<!-- Anglar App Script -->
+<script src="scripts/app.js"></script>
+<script src="scripts/config.js"></script>
+<script src="scripts/directives.js"></script>
+<script src="scripts/controllers.js"></script>
+<script src="scripts/auth/authController.js"></script>
+<script src="scripts/auth/authService.js"></script>
+<script src="scripts/users/usersService.js"></script>
+<script src="scripts/users/profileController.js"></script>
+<script src="scripts/dashboard/dashboardController.js"></script>
+<script src="scripts/projects/projectsController.js"></script>
+<script src="scripts/projects/projectsModalController.js"></script>
+<script src="scripts/projects/projectsService.js"></script>
+<script src="scripts/timers/timersController.js"></script>
+<script src="scripts/timers/timersService.js"></script>
+<script src="scripts/timers/activeTimersService.js"></script>
+<script src="scripts/timers/activeTimersController.js"></script>
+<script src="scripts/timers/timersModalController.js"></script>
+<script src="scripts/tasks/tasksController.js"></script>
+<script src="scripts/tasks/tasksService.js"></script>
+<script src="scripts/tasks/tasksModalController.js"></script>
+<script src="scripts/clients/clientsController.js"></script>
+<script src="scripts/clients/clientsModalController.js"></script>
+<script src="scripts/clients/clientsService.js"></script>
+<script src="scripts/invoices/invoicesController.js"></script>
+<script src="scripts/invoices/invoiceController.js"></script>
+<script src="scripts/invoices/invoicesService.js"></script>
+<script src="scripts/invoices/invoice.service.js"></script>
+<script src="scripts/notes/notesController.js"></script>
+<script src="scripts/notes/notesService.js"></script>
+<!-- endbuild -->
+
+</body>
+</html>
