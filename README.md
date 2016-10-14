@@ -72,9 +72,9 @@ Please use [pivotal tracker](https://www.pivotaltracker.com/projects/1506092) to
 
 #### <a name="developing"></a>Developing
 
-Merges will be done through PRs for code review.
-
-We will use the [gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) model for branching.
+* Use [GitHub Service Hook](https://blog.pivotal.io/pivotal-labs/labs/level-up-your-development-workflow-with-github-pivotal-tracker) to link pivotal tracker stories with commits.
+* Merges will be done through PRs for code review.
+* We will use the [gitflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) model for branching.
 
 To begin developing, do this:
 
